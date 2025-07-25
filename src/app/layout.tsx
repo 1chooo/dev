@@ -7,7 +7,8 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Footer } from "@/components/footer";
 import { BASE_URL } from "@/lib/constants";
 import { Header } from "@/components/header";
-import { GoogleAnalytics } from '@next/third-parties/google'
+import { GoogleAnalytics } from "@next/third-parties/google";
+import type { Viewport } from "next";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
@@ -44,6 +45,13 @@ export const metadata: Metadata = {
     ],
   },
   manifest: "/manifest.json",
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#fafafa" },
+    { media: "(prefers-color-scheme: dark)", color: "#18181b" },
+  ],
 };
 
 const cx = (...classes) => classes.filter(Boolean).join(" ");
