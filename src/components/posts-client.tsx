@@ -15,28 +15,24 @@ interface PostsProps {
 
 export function PostsClient({ posts: initialPosts }: PostsProps) {
   const [sort, setSort] = useState<SortSetting>(["date", "desc"]);
-  
+
   // Fetcher function for SWR
   const fetcher = async (url: string) => {
     const response = await fetch(url);
     if (!response.ok) {
-      throw new Error('Failed to fetch views');
+      throw new Error("Failed to fetch views");
     }
     const data = await response.json();
     return data.views || {};
   };
 
   // Use SWR to fetch views data with automatic revalidation
-  const { data: viewsMap = {}, isLoading } = useSWR(
-    "/api/views/all",
-    fetcher,
-    {
-      refreshInterval: 30000, // Refresh every 30 seconds
-      revalidateOnFocus: true, // Revalidate when window gets focus
-      revalidateOnReconnect: true, // Revalidate when reconnected
-      dedupingInterval: 5000, // Dedupe requests within 5 seconds
-    }
-  );
+  const { data: viewsMap = {}, isLoading } = useSWR("/api/views/all", fetcher, {
+    refreshInterval: 30000, // Refresh every 30 seconds
+    revalidateOnFocus: true, // Revalidate when window gets focus
+    revalidateOnReconnect: true, // Revalidate when reconnected
+    dedupingInterval: 5000, // Dedupe requests within 5 seconds
+  });
 
   // Merge posts with views data
   const posts = useMemo(() => {
@@ -104,15 +100,25 @@ export function PostsClient({ posts: initialPosts }: PostsProps) {
   );
 }
 
-function List({ posts, sort, isViewsLoading }: { posts: Post[]; sort: SortSetting; isViewsLoading: boolean }) {
+function List({
+  posts,
+  sort,
+  isViewsLoading,
+}: {
+  posts: Post[];
+  sort: SortSetting;
+  isViewsLoading: boolean;
+}) {
   // sort can be ["date", "desc"] or ["views", "desc"] for example
   const sortedPosts = useMemo(() => {
     const [sortKey, sortDirection] = sort;
     return [...posts].sort((a, b) => {
       if (sortKey === "date") {
         return sortDirection === "desc"
-          ? new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
-          : new Date(a.publishedAt).getTime() - new Date(b.publishedAt).getTime();
+          ? new Date(b.publishedAt).getTime() -
+              new Date(a.publishedAt).getTime()
+          : new Date(a.publishedAt).getTime() -
+              new Date(b.publishedAt).getTime();
       } else {
         return sortDirection === "desc"
           ? (b.views || 0) - (a.views || 0)
@@ -134,11 +140,7 @@ function List({ posts, sort, isViewsLoading }: { posts: Post[]; sort: SortSettin
           getYear(sortedPosts[i + 1].publishedAt) !== year;
 
         return (
-          <FadeInLi
-            key={post.slug}
-            delay={i * 0.1}
-            divKey={post.slug}
-          >
+          <FadeInLi key={post.slug} delay={i * 0.1} divKey={post.slug}>
             <Link href={`/${post.slug}`}>
               <span
                 className={`flex transition-[background-color] hover:bg-neutral-100 dark:hover:bg-[#242424] active:bg-neutral-200 dark:active:bg-[#222] border-y border-neutral-200 dark:border-[#313131]
@@ -157,9 +159,7 @@ function List({ posts, sort, isViewsLoading }: { posts: Post[]; sort: SortSettin
                     </span>
                   )}
 
-                  <span
-                    className="grow text-neutral-800 dark:text-neutral-100"
-                  >
+                  <span className="grow text-neutral-800 dark:text-neutral-100">
                     <Balancer>{post.title}</Balancer>
                   </span>
                   {isViewsLoading ? (

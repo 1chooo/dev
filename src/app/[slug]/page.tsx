@@ -24,12 +24,7 @@ export async function generateMetadata({ params }) {
     return;
   }
 
-  let {
-    title,
-    publishedAt: publishedTime,
-    summary: description,
-    image,
-  } = post;
+  let { title, publishedAt: publishedTime, summary: description, image } = post;
   let ogImage = image ? image : `${BASE_URL}/opengraph-image`;
 
   return {
