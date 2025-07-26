@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import { calculateReadingTime } from "@/lib/reading-time";
 
 import { Post } from "@/types/post";
 
@@ -19,6 +20,7 @@ function getMDXData(dir: string): Post[] {
   return mdxFiles.map((file) => {
     let { data, content } = readMDXFile(path.join(dir, file));
     let slug = path.basename(file, path.extname(file));
+    const readingTime = calculateReadingTime(content);
 
     return {
       slug,
@@ -29,6 +31,7 @@ function getMDXData(dir: string): Post[] {
       content,
       views: 0,
       viewsFormatted: "0",
+      readingTime: readingTime,
     } as Post;
   });
 }

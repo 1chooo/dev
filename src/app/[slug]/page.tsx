@@ -98,9 +98,11 @@ export default async function Blog({ params }) {
               href="https://github.com/1chooo"
             >
               @1chooo
-            </Link>{" "}
+            </Link>
             {" | "}
             {formatDate(post.publishedAt)}
+            {" | "}
+            {post.readingTime}
           </p>
           <Suspense fallback={<div className="text-xs">Loading views...</div>}>
             <ViewCounter
