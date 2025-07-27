@@ -21,7 +21,6 @@ Before diving into today's discussion, let me give you a quick overview of my pr
 
 Eventually, I came across a personal website template called [vcard-personal-portfolio](https://codewithsadee.github.io/vcard-personal-portfolio/), which had all the features I wanted. I owe a huge thanks to the original creator, [Sadee](https://github.com/codewithsadee), for generously sharing their work, allowing me to build and modify on top of it.
 
-
 ### What's Inside the Site?
 
 The site now has five main sections:
@@ -34,13 +33,28 @@ The site now has five main sections:
 
 Each section serves a purpose and was iterated with care. Here's what it looks like:
 
-<EmblaCarousel 
+<EmblaCarousel
   images={[
-    { src: "/images/posts/1chooo-com-500-commits/about.webp", alt: "1chooo.com/about" },
-    { src: "/images/posts/1chooo-com-500-commits/resume.webp", alt: "1chooo.com/resume" },
-    { src: "/images/posts/1chooo-com-500-commits/portfolio.webp", alt: "1chooo.com/portfolio" },
-    { src: "/images/posts/1chooo-com-500-commits/blog.webp", alt: "1chooo.com/blog" },
-    { src: "/images/posts/1chooo-com-500-commits/contact.webp", alt: "1chooo.com/contact" }
+    {
+      src: "/images/posts/1chooo-com-500-commits/about.webp",
+      alt: "1chooo.com/about",
+    },
+    {
+      src: "/images/posts/1chooo-com-500-commits/resume.webp",
+      alt: "1chooo.com/resume",
+    },
+    {
+      src: "/images/posts/1chooo-com-500-commits/portfolio.webp",
+      alt: "1chooo.com/portfolio",
+    },
+    {
+      src: "/images/posts/1chooo-com-500-commits/blog.webp",
+      alt: "1chooo.com/blog",
+    },
+    {
+      src: "/images/posts/1chooo-com-500-commits/contact.webp",
+      alt: "1chooo.com/contact",
+    },
   ]}
   options={{ loop: true }}
 />
@@ -51,34 +65,56 @@ Each section serves a purpose and was iterated with care. Here's what it looks l
 
 Here are 10 key improvements I made — each one a valuable learning step:
 
-1. **Code Refactor**: I refactored the original codebase, transitioning from plain HTML, CSS, and JS to using the [React](https://react.dev/) framework for better scalability and maintainability. The website is now deployed via [Vercel](https://vercel.com/).
-2. **Componentization**: I extracted shared components to prevent "Copy-Paste Programming" and promote reusable code across the project.
-3. **Readable Commit Messages**: I followed the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) standard for structured, easy-to-read commit messages.
-4. **Issue Tracking**: I utilized GitHub Issues to keep track of changes and incorporated Milestones to monitor project progress.
-5. **Versioning with Tags**: I added tags to manage different releases, making version control more transparent and organized.
-6. **Google Analytics**: Integrated Google Analytics to track user behavior and gain insights into site traffic and interaction.
-7. **GitHub Dependency Bot**: Introduced the GitHub Dependency Bot to monitor and update dependencies, ensuring the project remains secure and up to date.
-8. **Next.js Migration**: Upgraded the aging Create-React-App to [Next.js](https://nextjs.org/) to leverage its modern features and improved performance.
-9. **Enhanced Documentation**: Improved the README and documentation to facilitate easier onboarding for future developers and contributors.
-10. **Component Unit Tests**: Implemented unit tests for each component to ensure everything functions correctly and maintain project stability.
+1. **Code Refactor**: Migrated from raw `HTML/CSS/JS` to [React](https://react.dev/), now deployed via [Vercel](https://vercel.com/).
+2. **Componentization**: Avoided "copy-paste" by creating shared, reusable components.
+3. **Readable Commit Messages**: Adopted [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) for clarity and consistency.
+4. **Issue Tracking**: Used GitHub Issues + Milestones to plan and track progress.
+5. **Versioning with Tags**: Added Git tags for clearer release management.
+6. **Google Analytics**: Monitored user interaction to guide improvements.
+7. **Dependency Bot**: Enabled auto dependency updates for better security.
+8. **Next.js Migration**: Switched from Create React App to [Next.js](https://nextjs.org/) for better performance and routing.
+9. **Enhanced Docs**: Improved README and documentation for easier onboarding.
+10. **Component Testing**: Added unit tests to ensure stability and prevent regressions.
 
 ![1chooo.com — 500 commits achieving 🥳](/images/posts/1chooo-com-500-commits/500-commit-achieving.webp)
 
 ## Code Refactoring
 
-In the original project by [Sadee](https://github.com/codewithsadee), the website was designed as a single-page application, meaning all the content was written within the same HTML file. Page transitions were achieved by manipulating sections within that file. While this approach allowed for quick adjustments by directly modifying the HTML, I soon encountered some significant limitations. Whenever I needed to make changes, I had to sift through thousands of lines of code to find the specific section I wanted to adjust. Moreover, since all the content was loaded at once, the entire page, including hidden sections, would be fetched on every visit, which negatively impacted performance. Additionally, the lack of a dedicated router made the code increasingly difficult to manage as the project grew. I realized that without a full rewrite, future expansions—like adding new features or pages—would be severely constrained, leaving me in a passive, reactive position.
+The original template by [@Sadee](https://github.com/codewithsadee) was a single-page application. All the content lived in one massive HTML file, with page transitions faked by showing and hiding different `<article>` blocks.
 
-At this point, I considered my options among the major front-end frameworks: [React](https://react.dev/), [Vue](https://vuejs.org/), and [Laravel](https://laravel.com/). I opted for [React](https://react.dev/) in combination with [TypeScript](https://www.typescriptlang.org/) since I had previous experience with it and was confident I could rely on the wealth of community resources available for React development. This decision marked the beginning of a large-scale refactoring journey.
+It worked — and was great for quick edits — but it came with serious drawbacks:
 
-The first step was to thoroughly understand the original codebase, which involved untangling the interwoven HTML, CSS, and JavaScript. I then rewrote it using React components, breaking down the structure into manageable, reusable pieces. This was no small task—some sections took weeks to fully refactor. However, transitioning the project to React allowed me to break up the monolithic HTML file into distinct components, each responsible for a specific section of the website. By integrating React Router, I implemented dynamic page transitions, ensuring only the necessary components were loaded when navigating between pages.
+* **Scalability was a nightmare**. Every update meant scrolling through thousands of lines just to find one edit.
+* **Performance took a hit**. Since the entire site loaded upfront, even hidden content was downloaded every time.
+* **No routing**. As the site grew, managing navigation and structure became chaotic.
 
-This refactor not only made the code more maintainable and easier to navigate but also provided me with the flexibility to extend the project in the future. The use of React components enabled cleaner separation of concerns, and I was no longer limited by the design choices of the original author.
+I knew that without a full rewrite, adding new features or scaling the project would be a struggle. So, I made the leap.
+
+### Break It Down
+
+I considered my options — [React](https://react.dev/), [Vue](https://vuejs.org/), and even [Laravel](https://laravel.com/) — and landed on **React with TypeScript**. I'd used React before and knew its ecosystem and community would back me up through the tough parts.
+
+Then the real work began.
+
+First, I had to untangle the tightly coupled HTML, CSS, and JavaScript. I broke everything down into **reusable React components**, organizing each part of the site into clean, maintainable units. Some sections took weeks to fully refactor, especially those with complex layout or animation.
+
+I also added **React Router** to handle navigation properly, which meant only loading the parts of the site the user actually needed — boosting performance and UX.
+
+### The Result
+
+The refactor gave me:
+
+* **Modular code** that's easier to read, test, and scale
+* **Page-based routing** for a better user experience
+* **Flexibility** to add new features without fear of breaking everything else
+
+Most importantly, I was no longer constrained by the design decisions of the original template. The project was finally mine — and ready to grow.
 
 ## Shared Components
 
 Refactoring was only part of the challenge, as I was stepping into front-end development for the first time. Initially, my React components were mostly just HTML code returned within `render` functions. However, during a self-review of my code, I noticed many opportunities for optimization. A significant issue was that several components could be made reusable, sharing similar styles and logic. In essence, I had fallen into a pattern of Copy-Paste Programming, where the same code was repeated in multiple places.
 
-Through this process, I learned to harness the power of the `map()` function in React. By passing in parameters, I could dynamically render components without duplicating code. This dramatically reduced redundancy and made the codebase cleaner and more maintainable. If you're interested in a more detailed breakdown of how to implement `map()` for elegance in a React TypeScript project, check out my article 👉🏻 [How to Make Your React TypeScript Project More Elegant with `map()`](blog/make-your-react-more-elegant-with-map).
+Through this process, I learned to harness the power of the `map()` function in React. By passing in parameters, I could dynamically render components without duplicating code. This dramatically reduced redundancy and made the codebase cleaner and more maintainable. If you're interested in a more detailed breakdown of how to implement `map()` for elegance in a React TypeScript project, check out my article 👉🏻 [How to Make Your React TypeScript Project More Elegant with `map()`](/react-map).
 
 ## Commit Messages
 
