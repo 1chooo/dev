@@ -8,7 +8,7 @@ import remarkFootnotes from "remark-footnotes";
 import { MarkdownAlert, Highlight } from "@/components/mdx/markdown-alert";
 import { LeetCodeLink } from "@/components/mdx/leetcode-link";
 import { AutoLinkText } from "@/components/mdx/auto-link-text";
-
+import EmblaCarousel from "@/components/embla-carousel";
 import { Anchor, type AnchorProps } from "@/components/mdx/anchor";
 import { cn } from "@/lib/utils";
 
@@ -73,6 +73,7 @@ let components = {
   MarkdownAlert,
   Highlight,
   LeetCodeLink,
+  EmblaCarousel,
 };
 
 export function CustomMDX(props) {

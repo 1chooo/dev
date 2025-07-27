@@ -5,51 +5,51 @@ summary: "Built a 500 commits GitHub Repository: 10 essential steps you can't mi
 image: "/images/posts/1chooo-com-500-commits/banner.webp"
 ---
 
-> A 500 commits Side Project is born, let's dive into how Hugo did it!
+Hey everyone! I'm Hugo — I just graduated from National Central University and am now taking a gap year to dive deeper into side projects, writing, and personal growth.
 
-Hey everyone! I'm Hugo, and I've just graduated from National Central University. As I embark on my gap year, I now have ample time to focus on maintaining my side projects, writing articles, and pursuing personal growth. Today, I want to share a significant milestone with you all—my personal website, [1chooo.com](https://1chooo.com), has reached [500 commits](https://github.com/1chooo/portfolio/commit/b01a0417642b3679ec87427f0c783bcaafe5e7c1) on its [GitHub repository](https://github.com/1chooo/portfolio) 🥳.
+Today, I'm excited to share a milestone: my personal website, [1chooo.com](https://1chooo.com), just hit [500 commits](https://github.com/1chooo/portfolio/commit/b01a0417642b3679ec87427f0c783bcaafe5e7c1) on [GitHub](https://github.com/1chooo/portfolio) 🎉.
 
-While 500 commits might seem trivial for large-scale projects, it's a major accomplishment for a personal side project like mine. Keeping this project alive has been a challenge—one that requires continuously introducing new features, setting new goals, and tackling technical debt. In this post, I want to reflect on the efforts that went into reaching this milestone, share the invaluable lessons I've learned along the way, and discuss some of the challenges I encountered.
+For a solo side project, this means a lot. It's been a journey of continuous iteration — building new features, refactoring code, and tackling technical debt. In this post, I'll reflect on the process, share lessons learned, and highlight a few roadblocks I hit along the way.
 
 ![Built a 500 commits GitHub Repository: 10 essential steps you can't miss by Hugo](/images/posts/1chooo-com-500-commits/banner.webp)
+
+## A Quick Backstory
+
+This site started with a simple goal: build a personal portfolio I could showcase my work and share my journey. After a few failed attempts, I found a great open-source template — [vcard-personal-portfolio](https://codewithsadee.github.io/vcard-personal-portfolio/) by [@Sadee](https://github.com/codewithsadee) — that became my starting point. From there, I rewrote, customized, and expanded it into something of my own.
 
 Before diving into today's discussion, let me give you a quick overview of my project's current state. The idea behind this project started with a simple desire—I wanted to create a personal website. Although I had attempted several iterations in the past, none of them quite met my expectations. So, I turned to GitHub, searching through keywords like "portfolio" and "personal website" to find a design that matched my vision. It felt a bit like taking a shortcut, but that's the beauty of open source, right?
 
 Eventually, I came across a personal website template called [vcard-personal-portfolio](https://codewithsadee.github.io/vcard-personal-portfolio/), which had all the features I wanted. I owe a huge thanks to the original creator, [Sadee](https://github.com/codewithsadee), for generously sharing their work, allowing me to build and modify on top of it.
 
-My website consists of five main sections, each serving a specific purpose:
 
-## About
+### What's Inside the Site?
 
-This page introduces me to visitors and aims to create a strong first impression.
+The site now has five main sections:
 
-![1chooo.com/about](/images/posts/1chooo-com-500-commits/about.webp)
+- **About:** a personal intro.
+- **Resume:** education, experience, and competitions.
+- **Portfolio:** my projects in dev, design, and data.
+- **Blog:** where I write about code and more.
+- **Contact:** for anyone who wants to connect.
 
-## Resume
+Each section serves a purpose and was iterated with care. Here's what it looks like:
 
-This section showcases my professional background, including my education, work experience, and competition history.
+<EmblaCarousel 
+  images={[
+    { src: "/images/posts/1chooo-com-500-commits/about.webp", alt: "1chooo.com/about" },
+    { src: "/images/posts/1chooo-com-500-commits/resume.webp", alt: "1chooo.com/resume" },
+    { src: "/images/posts/1chooo-com-500-commits/portfolio.webp", alt: "1chooo.com/portfolio" },
+    { src: "/images/posts/1chooo-com-500-commits/blog.webp", alt: "1chooo.com/blog" },
+    { src: "/images/posts/1chooo-com-500-commits/contact.webp", alt: "1chooo.com/contact" }
+  ]}
+  options={{ loop: true }}
+/>
 
-![1chooo.com/resume](/images/posts/1chooo-com-500-commits/resume.webp)
+---
 
-## Portfolio
+## 10 Lessons From 500 Commits
 
-Here, I display my past projects, ranging from web development and apps to data analysis.
-
-![1chooo.com/portfolio](/images/posts/1chooo-com-500-commits/portfolio.webp)
-
-## Blog
-
-This is where I share my writings, including technical articles and coding experiences. Essentially, I write whatever I feel like sharing.
-
-![1chooo.com/blog](/images/posts/1chooo-com-500-commits/blog.webp)
-
-## Contact
-
-A dedicated space for people to reach out to me with any questions or discussions.
-
-![1chooo.com/contact](/images/posts/1chooo-com-500-commits/contact.webp)
-
-After giving you a quick tour of my website, let's dive into the main topic. Before we get into the lessons and takeaways, I'd like to present some data that highlights the key features and changes I've implemented. Here are the top ten features I've introduced to the project:
+Here are 10 key improvements I made — each one a valuable learning step:
 
 1. **Code Refactor**: I refactored the original codebase, transitioning from plain HTML, CSS, and JS to using the [React](https://react.dev/) framework for better scalability and maintainability. The website is now deployed via [Vercel](https://vercel.com/).
 2. **Componentization**: I extracted shared components to prevent "Copy-Paste Programming" and promote reusable code across the project.
@@ -61,8 +61,6 @@ After giving you a quick tour of my website, let's dive into the main topic. Bef
 8. **Next.js Migration**: Upgraded the aging Create-React-App to [Next.js](https://nextjs.org/) to leverage its modern features and improved performance.
 9. **Enhanced Documentation**: Improved the README and documentation to facilitate easier onboarding for future developers and contributors.
 10. **Component Unit Tests**: Implemented unit tests for each component to ensure everything functions correctly and maintain project stability.
-
-These changes not only improved the overall quality of my website but also helped me adopt best practices for modern web development.
 
 ![1chooo.com — 500 commits achieving 🥳](/images/posts/1chooo-com-500-commits/500-commit-achieving.webp)
 
@@ -132,7 +130,7 @@ The final feature I'd like to highlight is **Unit Testing**. I started using **[
 
 ![Unit Test in 1chooo.com](/images/posts/1chooo-com-500-commits/tests.webp)
 
-## Conclusion
+## Outro
 
 Reaching the milestone of **500 commits** is significant, yet I still have numerous tasks I wish to accomplish. For instance, I'm currently working on finalizing the functionality of the Blog page. This is a task that comes with its own technical debt, as I initially lacked a design for rendering content in Markdown. Adding this feature requires me to enhance the flexibility of my components, which is an area I'm actively focusing on. Additionally, I'm addressing the issue of pagination, specifically the need for "Previous" and "Next" buttons to facilitate seamless navigation between articles. The "Contact Me" feature for sending emails is also pending, and I'm deliberating whether to connect it directly to a Lambda Function or to create a robust API for email authentication—this is another point I'm contemplating.
 

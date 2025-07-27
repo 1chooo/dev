@@ -36,7 +36,7 @@ html {
   content: "#";
 }
 
-.prose *:hover > .anchor {
+.prose *:hover>.anchor {
   @apply visible;
 }
 
@@ -107,7 +107,7 @@ html {
   letter-spacing: 0.25em;
 }
 
-.prose > :first-child {
+.prose> :first-child {
   /* Override removing top margin, causing layout shift */
   margin-top: 1.25em !important;
   margin-bottom: 1.25em !important;
@@ -132,6 +132,7 @@ table {
   pre code span {
     color: var(--shiki-dark) !important;
   }
+
   pre {
     background-color: var(--shiki-dark-bg) !important;
   }
@@ -144,5 +145,67 @@ table {
 
   pre {
     background-color: var(--shiki-light-bg) !important;
+  }
+}
+
+.embla {
+  max-width: 48rem;
+  margin: auto;
+  --slide-height: 19rem;
+  --slide-spacing: 1rem;
+  --slide-size: 80%;
+}
+
+@media (max-width: 768px) {
+  .embla {
+    --slide-height: auto;
+    --slide-size: 90%;
+  }
+}
+
+.embla__viewport {
+  overflow: hidden;
+}
+
+.embla__container {
+  display: flex;
+  touch-action: pan-y pinch-zoom;
+  margin-left: calc(var(--slide-spacing) * -1);
+}
+
+.embla__slide {
+  transform: translate3d(0, 0, 0);
+  flex: 0 0 var(--slide-size);
+  min-width: 0;
+  padding-left: var(--slide-spacing);
+}
+
+.embla__slide__content {
+  position: relative;
+  width: 100%;
+  height: var(--slide-height);
+  border-radius: 1.8rem;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .embla__slide__content {
+    height: auto;
+    min-height: 200px;
+  }
+}
+
+.embla__slide__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 1.8rem;
+}
+
+@media (max-width: 768px) {
+  .embla__slide__img {
+    height: auto !important;
+    object-fit: contain !important;
+    max-height: 300px;
   }
 }
