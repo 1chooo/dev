@@ -5,7 +5,8 @@
     "build": "next build",
     "start": "next start",
     "test": "vitest",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "new": "tsx scripts/new-post.ts"
   },
   "type": "module",
   "dependencies": {
@@ -39,6 +40,7 @@
     "swr": "^2.3.4",
     "tailwind-merge": "3.3.1",
     "tailwindcss": "4.1.11",
+    "tsx": "^4.20.3",
     "tw-animate-css": "1.3.5",
     "typescript": "5.4.5",
     "zod": "4.0.5"
