@@ -7,6 +7,7 @@ import { CodeBlock } from "@/components/mdx/code-block";
 import remarkFootnotes from "remark-footnotes";
 import { MarkdownAlert, Highlight } from "@/components/mdx/markdown-alert";
 import { LeetCodeLink } from "@/components/mdx/leetcode-link";
+import { AutoLinkText } from "@/components/mdx/auto-link-text";
 
 import { Anchor, type AnchorProps } from "@/components/mdx/anchor";
 import { cn } from "@/lib/utils";
@@ -39,6 +40,19 @@ function RoundedImage(props) {
   return <Image alt={props.alt} className="rounded-lg" {...props} />;
 }
 
+function CustomParagraph({ children, ...props }) {
+  const processChildren = (children) => {
+    return React.Children.map(children, (child) => {
+      if (typeof child === "string") {
+        return <AutoLinkText>{child}</AutoLinkText>;
+      }
+      return child;
+    });
+  };
+
+  return <p {...props}>{processChildren(children)}</p>;
+}
+
 let components = {
   h1: createHeading(1),
   h2: createHeading(2),
@@ -48,6 +62,7 @@ let components = {
   h6: createHeading(6),
   Image: RoundedImage,
   a: (props: AnchorProps) => <Anchor {...props} />,
+  p: CustomParagraph,
   code: (props: ComponentPropsWithoutRef<"code">) => (
     <code className={styles.code} {...props} />
   ),

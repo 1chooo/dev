@@ -91,6 +91,22 @@ html {
   @apply list-decimal pl-6;
 }
 
+.prose hr {
+  margin: 1.25em 0;
+  height: auto;
+  border: none;
+  background: none;
+  text-align: center;
+  position: relative;
+}
+
+.prose hr::before {
+  content: '***';
+  font-family: var(--mono);
+  font-size: 0.875em;
+  letter-spacing: 0.25em;
+}
+
 .prose > :first-child {
   /* Override removing top margin, causing layout shift */
   margin-top: 1.25em !important;
