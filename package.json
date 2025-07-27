@@ -5,7 +5,7 @@
     "build": "next build",
     "start": "next start",
     "test": "vitest",
-    "format": "prettier --write .",
+    "format": "prettier --write \"**/*.{ts,tsx,js,json,css}\"",
     "new": "tsx scripts/new-post.ts"
   },
   "type": "module",
