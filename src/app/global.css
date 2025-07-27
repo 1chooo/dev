@@ -36,7 +36,7 @@ html {
   content: "#";
 }
 
-.prose *:hover>.anchor {
+.prose *:hover > .anchor {
   @apply visible;
 }
 
@@ -101,13 +101,13 @@ html {
 }
 
 .prose hr::before {
-  content: '***';
+  content: "***";
   font-family: var(--mono);
   font-size: 0.875em;
   letter-spacing: 0.25em;
 }
 
-.prose> :first-child {
+.prose > :first-child {
   /* Override removing top margin, causing layout shift */
   margin-top: 1.25em !important;
   margin-bottom: 1.25em !important;

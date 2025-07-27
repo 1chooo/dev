@@ -36,8 +36,8 @@ function getMDXData(dir: string): Post[] {
   });
 }
 
-export function getBlogPosts(): Post[] {
-  return getMDXData(path.join(process.cwd(), "src", "content"));
+export function getBlogPosts(postsDir: string): Post[] {
+  return getMDXData(postsDir);
 }
 
 export function formatDate(date: string, includeRelative = false) {

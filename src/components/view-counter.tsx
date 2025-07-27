@@ -23,7 +23,7 @@ export function ViewCounter({
   // Fetcher function for SWR
   const fetcher = async (url: string) => {
     let response: Response;
-    
+
     if (trackView) {
       response = await fetch(url, {
         method: "POST",
@@ -46,17 +46,19 @@ export function ViewCounter({
   };
 
   // Use SWR to fetch views data
-  const swrKey = trackView ? "/api/views" : `/api/views?slug=${encodeURIComponent(slug)}`;
-  const { data: views = 0, isLoading, error } = useSWR(
-    swrKey,
-    fetcher,
-    {
-      revalidateOnFocus: false, // Don't revalidate when window gets focus for view counter
-      revalidateOnReconnect: false, // Don't revalidate when reconnected
-      dedupingInterval: 60000, // Dedupe requests within 1 minute
-      errorRetryCount: 3, // Retry 3 times on error
-    }
-  );
+  const swrKey = trackView
+    ? "/api/views"
+    : `/api/views?slug=${encodeURIComponent(slug)}`;
+  const {
+    data: views = 0,
+    isLoading,
+    error,
+  } = useSWR(swrKey, fetcher, {
+    revalidateOnFocus: false, // Don't revalidate when window gets focus for view counter
+    revalidateOnReconnect: false, // Don't revalidate when reconnected
+    dedupingInterval: 60000, // Dedupe requests within 1 minute
+    errorRetryCount: 3, // Retry 3 times on error
+  });
 
   // Handle errors
   useEffect(() => {

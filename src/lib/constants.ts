@@ -1,3 +1,9 @@
+import { join } from "path";
+
 const BASE_URL = "https://dev.1chooo.com";
 
-export { BASE_URL };
+const POSTS_DIR = join(process.cwd(), "src", "content");
+const DRAFTS_DIR = join(process.cwd(), "src", "content", "drafts");
+const ARCHIVES_DIR = join(process.cwd(), "src", "content", "archives");
+
+export { BASE_URL, POSTS_DIR, DRAFTS_DIR, ARCHIVES_DIR };

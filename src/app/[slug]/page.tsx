@@ -3,14 +3,14 @@ import React, { Suspense } from "react";
 import { notFound } from "next/navigation";
 import { CustomMDX } from "@/components/mdx";
 import { formatDate, getBlogPosts } from "@/lib/api/blog";
-import { BASE_URL } from "@/lib/constants";
+import { BASE_URL, POSTS_DIR } from "@/lib/constants";
 import { ViewCounter } from "@/components/view-counter";
 import Link from "next/link";
 import Balancer from "react-wrap-balancer";
 import { FadeLeft, FadeUp, FadeIn } from "@/components/animations";
 
 export async function generateStaticParams() {
-  let posts = getBlogPosts();
+  let posts = getBlogPosts(POSTS_DIR);
 
   return posts.map((post) => ({
     slug: post.slug,
@@ -19,7 +19,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
-  let post = getBlogPosts().find((post) => post.slug === slug);
+  let post = getBlogPosts(POSTS_DIR).find((post) => post.slug === slug);
   if (!post) {
     return;
   }
@@ -53,7 +53,7 @@ export async function generateMetadata({ params }) {
 
 export default async function Blog({ params }) {
   const { slug } = await params;
-  let post = getBlogPosts().find((post) => post.slug === slug);
+  let post = getBlogPosts(POSTS_DIR).find((post) => post.slug === slug);
 
   if (!post) {
     notFound();

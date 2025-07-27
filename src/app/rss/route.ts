@@ -3,7 +3,7 @@ import RSS from "rss";
 import { NextResponse } from "next/server";
 
 import { getBlogPosts } from "@/lib/api/blog";
-import { BASE_URL } from "@/lib/constants";
+import { BASE_URL, POSTS_DIR } from "@/lib/constants";
 
 import type { ItemOptions } from "@/types/rss";
 
@@ -27,7 +27,7 @@ const rssOptions = {
 export async function GET() {
   const feed = new RSS(rssOptions);
 
-  let allBlogs = await getBlogPosts();
+  let allBlogs = await getBlogPosts(POSTS_DIR);
 
   for (const post of allBlogs) {
     const { title, publishedAt, summary } = post;

@@ -1,8 +1,8 @@
 import { getBlogPosts } from "@/lib/api/blog";
-import { BASE_URL } from "@/lib/constants";
+import { BASE_URL, POSTS_DIR } from "@/lib/constants";
 
 async function sitemap() {
-  let blogs = getBlogPosts().map((post) => ({
+  let blogs = getBlogPosts(POSTS_DIR).map((post) => ({
     url: `${BASE_URL}/${post.slug}`,
     lastModified: post.publishedAt,
   }));

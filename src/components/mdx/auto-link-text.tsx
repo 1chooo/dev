@@ -17,7 +17,7 @@ function AutoLinkText({ children }: AutoLinkTextProps) {
   }
 
   const parts = children.split(URL_REGEX);
-  
+
   return (
     <>
       {parts.map((part, index) => {
@@ -25,7 +25,7 @@ function AutoLinkText({ children }: AutoLinkTextProps) {
         if (URL_REGEX.test(part)) {
           // 重置正則表達式的 lastIndex
           URL_REGEX.lastIndex = 0;
-          
+
           return (
             <Anchor
               key={index}
@@ -37,7 +37,7 @@ function AutoLinkText({ children }: AutoLinkTextProps) {
             </Anchor>
           );
         }
-        
+
         return part;
       })}
     </>
