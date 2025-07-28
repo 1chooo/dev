@@ -60,7 +60,7 @@ export default async function Blog({ params }) {
   }
 
   return (
-    <section>
+    <main className="flex-auto min-w-0 my-6 flex flex-col px-2 md:px-0">
       <script
         type="application/ld+json"
         suppressHydrationWarning
@@ -89,7 +89,7 @@ export default async function Blog({ params }) {
         </h1>
       </FadeLeft>
       <FadeUp delay={0.3 * 2}>
-        <div className="flex justify-between items-center mt-2 mb-8 text-sm flex-nowrap">
+        <div className="flex justify-between items-center mt-2 mb-4 text-sm flex-nowrap">
           <p className="font-mono text-xs text-neutral-600 dark:text-neutral-400 flex-shrink-0">
             <Link
               rel="noopener noreferrer"
@@ -118,6 +118,6 @@ export default async function Blog({ params }) {
           <CustomMDX source={post.content} />
         </article>
       </FadeIn>
-    </section>
+    </main>
   );
 }

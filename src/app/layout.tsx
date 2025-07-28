@@ -73,9 +73,7 @@ export default function RootLayout({
       <GoogleAnalytics gaId={process.env.GOOGLE_ANALYTICS_ID!} />
       <body className="antialiased max-w-xl mx-4 sm:mx-auto">
         <Header />
-        <main className="flex-auto min-w-0 my-6 flex flex-col px-2 md:px-0">
-          {children}
-        </main>
+        {children}
         <Footer />
         <Analytics />
         <SpeedInsights />

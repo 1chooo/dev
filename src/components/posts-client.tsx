@@ -61,16 +61,15 @@ export function PostsClient({ posts: initialPosts }: PostsProps) {
   }
 
   return (
-    <div className="max-w-2xl m-auto mb-10 text-sm font-mono">
+    <main className="flex-auto min-w-0 my-6 flex flex-col px-2 md:px-0 mb-10 text-sm font-mono">
       <FadeDown delay={0.3 * 3}>
         <header className="text-neutral-500 dark:text-neutral-600 flex items-center text-xs">
           <button
             onClick={sortDate}
-            className={`w-12 h-9 text-left cursor-pointer ${
-              sort[0] === "date" && sort[1] !== "desc"
+            className={`w-12 h-9 text-left cursor-pointer ${sort[0] === "date" && sort[1] !== "desc"
                 ? "text-neutral-700 dark:text-neutral-400"
                 : ""
-            }`}
+              }`}
           >
             date
             {sort[0] === "date" && sort[1] === "asc" && "↑"}
@@ -82,11 +81,10 @@ export function PostsClient({ posts: initialPosts }: PostsProps) {
               h-9
                   pl-4
                   cursor-pointer
-                  ${
-                    sort[0] === "views"
-                      ? "text-neutral-700 dark:text-neutral-400"
-                      : ""
-                  }
+                  ${sort[0] === "views"
+                ? "text-neutral-700 dark:text-neutral-400"
+                : ""
+              }
                 `}
           >
             views
@@ -96,7 +94,7 @@ export function PostsClient({ posts: initialPosts }: PostsProps) {
       </FadeDown>
 
       <List posts={posts} sort={sort} isViewsLoading={isLoading} />
-    </div>
+    </main>
   );
 }
 
@@ -116,9 +114,9 @@ function List({
       if (sortKey === "date") {
         return sortDirection === "desc"
           ? new Date(b.publishedAt).getTime() -
-              new Date(a.publishedAt).getTime()
+          new Date(a.publishedAt).getTime()
           : new Date(a.publishedAt).getTime() -
-              new Date(b.publishedAt).getTime();
+          new Date(b.publishedAt).getTime();
       } else {
         return sortDirection === "desc"
           ? (b.views || 0) - (a.views || 0)
@@ -149,9 +147,8 @@ function List({
                   `}
               >
                 <span
-                  className={`py-3 flex grow items-center ${
-                    !firstOfYear ? "ml-14" : ""
-                  }`}
+                  className={`py-3 flex grow items-center ${!firstOfYear ? "ml-14" : ""
+                    }`}
                 >
                   {firstOfYear && (
                     <span className="w-14 inline-block self-start shrink-0 text-neutral-600 dark:text-neutral-400">
