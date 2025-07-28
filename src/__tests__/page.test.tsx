@@ -4,7 +4,7 @@ import Page from "@/app/page";
 
 test("Page", () => {
   render(<Page />);
-  
+
   const section = screen.getByRole("main");
   expect(section).toBeDefined();
 });

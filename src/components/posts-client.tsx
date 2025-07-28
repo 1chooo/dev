@@ -6,8 +6,14 @@ import Balancer from "react-wrap-balancer";
 import useSWR from "swr";
 import { FadeDown, FadeInLi } from "@/components/animations";
 import { Post } from "@/types/post";
-
-type SortSetting = ["date" | "views", "desc" | "asc"];
+import {
+  SortSetting,
+  toggleDateSort,
+  toggleViewsSort,
+  sortPosts,
+  getSortIndicator,
+  isSortActive,
+} from "@/lib/utils/sort";
 
 interface PostsProps {
   posts: Post[];
@@ -46,49 +52,46 @@ export function PostsClient({ posts: initialPosts }: PostsProps) {
     });
   }, [initialPosts, viewsMap]);
 
-  function sortDate() {
-    setSort((sort) => [
-      "date",
-      sort[0] !== "date" || sort[1] === "asc" ? "desc" : "asc",
-    ]);
-  }
+  // Sort handlers using utility functions
+  const handleDateSort = () => {
+    setSort((currentSort) => toggleDateSort(currentSort));
+  };
 
-  function sortViews() {
-    setSort((sort) => [
-      sort[0] === "views" && sort[1] === "asc" ? "date" : "views",
-      sort[0] !== "views" ? "desc" : sort[1] === "desc" ? "asc" : "desc",
-    ]);
-  }
+  const handleViewsSort = () => {
+    setSort((currentSort) => toggleViewsSort(currentSort));
+  };
 
   return (
     <main className="flex-auto min-w-0 my-6 flex flex-col px-2 md:px-0 mb-10 text-sm font-mono">
       <FadeDown delay={0.3 * 3}>
         <header className="text-neutral-500 dark:text-neutral-600 flex items-center text-xs">
           <button
-            onClick={sortDate}
-            className={`w-12 h-9 text-left cursor-pointer ${sort[0] === "date" && sort[1] !== "desc"
+            onClick={handleDateSort}
+            className={`w-12 h-9 text-left cursor-pointer ${
+              isSortActive(sort, "date") && sort[1] !== "desc"
                 ? "text-neutral-700 dark:text-neutral-400"
                 : ""
-              }`}
+            }`}
           >
             date
-            {sort[0] === "date" && sort[1] === "asc" && "↑"}
+            {getSortIndicator(sort, "date", false, true)}
           </button>
           <span className="grow pl-2">title</span>
           <button
-            onClick={sortViews}
+            onClick={handleViewsSort}
             className={`
               h-9
-                  pl-4
-                  cursor-pointer
-                  ${sort[0] === "views"
-                ? "text-neutral-700 dark:text-neutral-400"
-                : ""
+              pl-4
+              cursor-pointer
+              ${
+                isSortActive(sort, "views")
+                  ? "text-neutral-700 dark:text-neutral-400"
+                  : ""
               }
-                `}
+            `}
           >
             views
-            {sort[0] === "views" ? (sort[1] === "asc" ? "↑" : "↓") : ""}
+            {getSortIndicator(sort, "views", true, true)}
           </button>
         </header>
       </FadeDown>
@@ -107,22 +110,9 @@ function List({
   sort: SortSetting;
   isViewsLoading: boolean;
 }) {
-  // sort can be ["date", "desc"] or ["views", "desc"] for example
+  // Use utility function to sort posts
   const sortedPosts = useMemo(() => {
-    const [sortKey, sortDirection] = sort;
-    return [...posts].sort((a, b) => {
-      if (sortKey === "date") {
-        return sortDirection === "desc"
-          ? new Date(b.publishedAt).getTime() -
-          new Date(a.publishedAt).getTime()
-          : new Date(a.publishedAt).getTime() -
-          new Date(b.publishedAt).getTime();
-      } else {
-        return sortDirection === "desc"
-          ? (b.views || 0) - (a.views || 0)
-          : (a.views || 0) - (b.views || 0);
-      }
-    });
+    return sortPosts(posts, sort);
   }, [posts, sort]);
 
   return (
@@ -147,8 +137,9 @@ function List({
                   `}
               >
                 <span
-                  className={`py-3 flex grow items-center ${!firstOfYear ? "ml-14" : ""
-                    }`}
+                  className={`py-3 flex grow items-center ${
+                    !firstOfYear ? "ml-14" : ""
+                  }`}
                 >
                   {firstOfYear && (
                     <span className="w-14 inline-block self-start shrink-0 text-neutral-600 dark:text-neutral-400">
