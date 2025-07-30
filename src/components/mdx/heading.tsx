@@ -1,36 +1,29 @@
-import React from "react";
+import React, { ComponentPropsWithoutRef } from "react";
 
-function createHeading(level) {
-  const Heading = ({ children }) => {
-    let slug = slugify(children);
-    return React.createElement(
-      `h${level}`,
-      { id: slug },
-      [
-        React.createElement("a", {
-          href: `#${slug}`,
-          key: `link-${slug}`,
-          className: "anchor",
-        }),
-      ],
-      children,
-    );
-  };
+import { cn } from "@/lib/utils";
 
-  Heading.displayName = `Heading${level}`;
+import Link from "next/link";
+import slugify from "@/lib/slugify";
 
-  return Heading;
+type HeadingTag = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+type HeadingProps<T extends HeadingTag> = ComponentPropsWithoutRef<T> & {
+  as?: T;
+};
+
+function Heading<T extends HeadingTag = "h1">(props: HeadingProps<T>) {
+  const { as, className, children, ...rest } = props;
+  const Component = as ?? "h1";
+
+  const headingId = slugify(children?.toString() ?? "", { lower: true });
+
+  return (
+    <Component className={cn("scroll-m-4", className)} id={headingId} {...rest}>
+      <Link href={`#${headingId}`} className="anchor" />
+      {children}
+    </Component>
+  );
 }
 
-function slugify(str) {
-  return str
-    .toString()
-    .toLowerCase()
-    .trim() // Remove whitespace from both ends of a string
-    .replace(/\s+/g, "-") // Replace spaces with -
-    .replace(/&/g, "-and-") // Replace & with 'and'
-    .replace(/[^\w\-]+/g, "") // Remove all non-word characters except for -
-    .replace(/\-\-+/g, "-"); // Replace multiple - with single -
-}
-
-export { createHeading };
+export type { HeadingProps };
+export { Heading };
+export default Heading;

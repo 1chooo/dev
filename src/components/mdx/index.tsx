@@ -2,7 +2,7 @@ import React, { ComponentPropsWithoutRef } from "react";
 import rehypeShiki from "@shikijs/rehype";
 import Image from "next/image";
 import { MDXRemote } from "next-mdx-remote/rsc";
-import { createHeading } from "@/components/mdx/heading";
+import { Heading, type HeadingProps } from "@/components/mdx/heading";
 import { CodeBlock } from "@/components/mdx/code-block";
 import remarkFootnotes from "remark-footnotes";
 import { MarkdownAlert, Highlight } from "@/components/mdx/markdown-alert";
@@ -54,12 +54,24 @@ function CustomParagraph({ children, ...props }) {
 }
 
 let components = {
-  h1: createHeading(1),
-  h2: createHeading(2),
-  h3: createHeading(3),
-  h4: createHeading(4),
-  h5: createHeading(5),
-  h6: createHeading(6),
+  h1: (props: HeadingProps<"h1">) => (
+    <Heading as="h1" {...props} />
+  ),
+  h2: (props: HeadingProps<"h2">) => (
+    <Heading as="h2"  {...props} />
+  ),
+  h3: (props: HeadingProps<"h3">) => (
+    <Heading as="h3"  {...props} />
+  ),
+  h4: (props: HeadingProps<"h4">) => (
+    <Heading as="h4"   {...props} />
+  ),
+  h5: (props: HeadingProps<"h5">) => (
+    <Heading as="h5"  {...props} />
+  ),
+  h6: (props: HeadingProps<"h6">) => (
+    <Heading as="h6"  {...props} />
+  ),
   Image: RoundedImage,
   a: (props: AnchorProps) => <Anchor {...props} />,
   p: CustomParagraph,
