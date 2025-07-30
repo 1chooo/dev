@@ -1,4 +1,5 @@
 import { createClient as createSupabaseClient } from "@supabase/supabase-js";
+import "@/lib/env-config";
 
 export function createClient() {
   return createSupabaseClient(
