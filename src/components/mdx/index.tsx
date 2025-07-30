@@ -11,6 +11,7 @@ import { AutoLinkText } from "@/components/mdx/auto-link-text";
 import EmblaCarousel from "@/components/embla-carousel";
 import { Anchor, type AnchorProps } from "@/components/mdx/anchor";
 import { cn } from "@/lib/utils";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 import styles from "@/styles/md.module.css";
 
@@ -86,6 +87,7 @@ let components = {
   Highlight,
   LeetCodeLink,
   EmblaCarousel,
+  Tabs, TabsContent, TabsList, TabsTrigger,
 };
 
 export function CustomMDX(props) {
