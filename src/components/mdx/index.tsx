@@ -11,7 +11,7 @@ import { AutoLinkText } from "@/components/mdx/auto-link-text";
 import EmblaCarousel from "@/components/embla-carousel";
 import { Anchor, type AnchorProps } from "@/components/mdx/anchor";
 import { cn } from "@/lib/utils";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import styles from "@/styles/md.module.css";
 
@@ -55,24 +55,12 @@ function CustomParagraph({ children, ...props }) {
 }
 
 let components = {
-  h1: (props: HeadingProps<"h1">) => (
-    <Heading as="h1" {...props} />
-  ),
-  h2: (props: HeadingProps<"h2">) => (
-    <Heading as="h2"  {...props} />
-  ),
-  h3: (props: HeadingProps<"h3">) => (
-    <Heading as="h3"  {...props} />
-  ),
-  h4: (props: HeadingProps<"h4">) => (
-    <Heading as="h4"   {...props} />
-  ),
-  h5: (props: HeadingProps<"h5">) => (
-    <Heading as="h5"  {...props} />
-  ),
-  h6: (props: HeadingProps<"h6">) => (
-    <Heading as="h6"  {...props} />
-  ),
+  h1: (props: HeadingProps<"h1">) => <Heading as="h1" {...props} />,
+  h2: (props: HeadingProps<"h2">) => <Heading as="h2" {...props} />,
+  h3: (props: HeadingProps<"h3">) => <Heading as="h3" {...props} />,
+  h4: (props: HeadingProps<"h4">) => <Heading as="h4" {...props} />,
+  h5: (props: HeadingProps<"h5">) => <Heading as="h5" {...props} />,
+  h6: (props: HeadingProps<"h6">) => <Heading as="h6" {...props} />,
   Image: RoundedImage,
   a: (props: AnchorProps) => <Anchor {...props} />,
   p: CustomParagraph,
@@ -87,7 +75,10 @@ let components = {
   Highlight,
   LeetCodeLink,
   EmblaCarousel,
-  Tabs, TabsContent, TabsList, TabsTrigger,
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
 };
 
 export function CustomMDX(props) {
