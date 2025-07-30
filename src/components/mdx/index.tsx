@@ -12,6 +12,15 @@ import EmblaCarousel from "@/components/embla-carousel";
 import { Anchor, type AnchorProps } from "@/components/mdx/anchor";
 import { cn } from "@/lib/utils";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { ListItem, type ListItemProps } from "@/components/mdx/list-item";
+import {
+  OrderedList,
+  type OrderedListProps,
+} from "@/components/mdx/ordered-list";
+import {
+  UnorderedList,
+  type UnorderedListProps,
+} from "@/components/mdx/unordered-list";
 
 import styles from "@/styles/md.module.css";
 
@@ -70,6 +79,9 @@ let components = {
   pre: ({ ...props }: React.HTMLAttributes<HTMLElement>) => (
     <CodeBlock className={cn(styles.pre)} {...props} />
   ),
+  li: (props: ListItemProps) => <ListItem {...props} />,
+  ol: (props: OrderedListProps) => <OrderedList {...props} />,
+  ul: (props: UnorderedListProps) => <UnorderedList {...props} />,
   Table,
   MarkdownAlert,
   Highlight,
