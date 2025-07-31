@@ -23,6 +23,7 @@ import {
 } from "@/components/mdx/unordered-list";
 import { RedditEmbed } from "@/components/reddit-embed";
 import { Tweet } from "@/components/tweet";
+import { GitHubMap } from "@/components/github-map";
 
 import styles from "@/styles/md.module.css";
 
@@ -95,6 +96,7 @@ let components = {
   TabsTrigger,
   RedditEmbed,
   Tweet,
+  GitHubMap,
 };
 
 export function CustomMDX(props) {
