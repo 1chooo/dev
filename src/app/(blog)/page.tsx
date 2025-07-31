@@ -1,4 +1,5 @@
 import { BlogPosts } from "@/components/posts";
+import { Header } from "@/components/header";
 
 export const metadata = {
   title: "Hugo Lin Dev",
@@ -6,5 +7,10 @@ export const metadata = {
 };
 
 export default function Page() {
-  return <BlogPosts />;
+  return (
+    <>
+      <Header />
+      <BlogPosts />
+    </>
+  );
 }

@@ -6,7 +6,6 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Footer } from "@/components/footer";
 import { BASE_URL } from "@/lib/constants";
-import { Header } from "@/components/header";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import type { Viewport } from "next";
 
@@ -94,7 +93,6 @@ export default function RootLayout({
     >
       <GoogleAnalytics gaId={process.env.GOOGLE_ANALYTICS_ID!} />
       <body className="antialiased max-w-xl mx-4 sm:mx-auto">
-        <Header />
         {children}
         <Footer />
         <Analytics />
