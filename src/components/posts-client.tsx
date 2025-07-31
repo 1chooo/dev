@@ -147,7 +147,7 @@ function List({
                     </span>
                   )}
 
-                  <span className="grow text-neutral-800 dark:text-neutral-100">
+                  <span className="grow text-neutral-800 dark:text-neutral-100 mr-6">
                     <Balancer>{post.title}</Balancer>
                   </span>
                   {isViewsLoading ? (
