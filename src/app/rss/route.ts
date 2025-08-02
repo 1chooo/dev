@@ -3,7 +3,7 @@ import RSS from "rss";
 import { NextResponse } from "next/server";
 
 import { getBlogPosts } from "@/lib/api/blog";
-import { BASE_URL, POSTS_DIR } from "@/lib/constants";
+import { BASE_URL, POSTS_DIR, ARCHIVES_DIR } from "@/lib/constants";
 
 import type { ItemOptions } from "@/types/rss";
 
@@ -36,6 +36,23 @@ export async function GET() {
     itemOptions = {
       title,
       url: `${BASE_URL}/${post.slug}`,
+      date: publishedAt,
+      description: summary,
+      author: "Hugo Lin",
+    };
+
+    feed.item(itemOptions);
+  }
+
+  const archivedPosts = await getBlogPosts(ARCHIVES_DIR);
+
+  for (const post of archivedPosts) {
+    const { title, publishedAt, summary } = post;
+
+    let itemOptions: ItemOptions;
+    itemOptions = {
+      title: `Archived: ${title}`,
+      url: `${BASE_URL}/archive/${post.slug}`,
       date: publishedAt,
       description: summary,
       author: "Hugo Lin",
