@@ -8,6 +8,7 @@ import { Footer } from "@/components/footer";
 import { BASE_URL } from "@/lib/constants";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import type { Viewport } from "next";
+import { Header } from "@/components/header";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
@@ -93,6 +94,7 @@ export default function RootLayout({
     >
       <GoogleAnalytics gaId={process.env.GOOGLE_ANALYTICS_ID!} />
       <body className="antialiased max-w-xl mx-4 sm:mx-auto">
+        <Header />
         {children}
         <Footer />
         <Analytics />

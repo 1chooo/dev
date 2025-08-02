@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import { FadeUp } from "@/components/animations";
 
-export function Header() {
+export function PostHeader() {
   return (
     <header className="flex my-10 items-center">
       <FadeUp delay={0.3 * 2}>

@@ -8,7 +8,6 @@ interface GitHubMapProps {
 }
 
 function GitHubMap({ year = "last", username = "1chooo" }: GitHubMapProps) {
-
   return (
     <section
       id="github-calendar"
