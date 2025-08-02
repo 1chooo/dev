@@ -12,6 +12,7 @@ interface ViewCounterProps {
   className?: string;
   trackView?: boolean;
   displayViews?: boolean;
+  isArchive?: boolean;
 }
 
 export function ViewCounter({
@@ -19,6 +20,7 @@ export function ViewCounter({
   className = "",
   trackView = false,
   displayViews = true,
+  isArchive = false,
 }: ViewCounterProps) {
   // Fetcher function for SWR
   const fetcher = async (url: string) => {
@@ -46,9 +48,10 @@ export function ViewCounter({
   };
 
   // Use SWR to fetch views data
+  const apiEndpoint = isArchive ? "/api/views/archive" : "/api/views";
   const swrKey = trackView
-    ? "/api/views"
-    : `/api/views?slug=${encodeURIComponent(slug)}`;
+    ? apiEndpoint
+    : `${apiEndpoint}?slug=${encodeURIComponent(slug)}`;
   const {
     data: views = 0,
     isLoading,

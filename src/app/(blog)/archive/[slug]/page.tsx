@@ -35,7 +35,7 @@ export async function generateMetadata({ params }) {
       description,
       type: "article",
       publishedTime,
-      url: `${BASE_URL}/${post.slug}`,
+      url: `${BASE_URL}/archive/${post.slug}`,
       images: [
         {
           url: ogImage,
@@ -75,7 +75,7 @@ export default async function Blog({ params }) {
             image: post.image
               ? `${BASE_URL}/${post.image}`
               : `/opengraph-image`,
-            url: `${BASE_URL}/${post.slug}`,
+            url: `${BASE_URL}/archive/${post.slug}`,
             author: {
               "@type": "Person",
               name: "My Portfolio",
@@ -109,6 +109,7 @@ export default async function Blog({ params }) {
               className="font-mono text-xs text-neutral-600 dark:text-neutral-400 flex-shrink-0"
               slug={post.slug}
               trackView
+              isArchive={true}
             />
           </Suspense>
         </div>
