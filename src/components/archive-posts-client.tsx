@@ -33,12 +33,16 @@ export function ArchivePostsClient({ posts: initialPosts }: PostsProps) {
   };
 
   // Use SWR to fetch views data with automatic revalidation
-  const { data: viewsMap = {}, isLoading } = useSWR("/api/views/archive/all", fetcher, {
-    refreshInterval: 30000, // Refresh every 30 seconds
-    revalidateOnFocus: true, // Revalidate when window gets focus
-    revalidateOnReconnect: true, // Revalidate when reconnected
-    dedupingInterval: 5000, // Dedupe requests within 5 seconds
-  });
+  const { data: viewsMap = {}, isLoading } = useSWR(
+    "/api/views/archive/all",
+    fetcher,
+    {
+      refreshInterval: 30000, // Refresh every 30 seconds
+      revalidateOnFocus: true, // Revalidate when window gets focus
+      revalidateOnReconnect: true, // Revalidate when reconnected
+      dedupingInterval: 5000, // Dedupe requests within 5 seconds
+    },
+  );
 
   // Merge posts with views data
   const posts = useMemo(() => {
