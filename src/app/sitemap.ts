@@ -12,7 +12,7 @@ async function sitemap() {
     lastModified: post.publishedAt,
   }));
 
-  const routes = [""].map((route) => ({
+  const routes = ["", "/archive"].map((route) => ({
     url: `${BASE_URL}${route}`,
     lastModified: new Date().toISOString().split("T")[0],
   }));
