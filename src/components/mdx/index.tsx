@@ -4,7 +4,7 @@ import Image from "next/image";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { Heading, type HeadingProps } from "@/components/mdx/heading";
 import { CodeBlock } from "@/components/mdx/code-block";
-import remarkFootnotes from "remark-footnotes";
+import remarkFootnotes from "remark-gfm";
 import { MarkdownAlert, Highlight } from "@/components/mdx/markdown-alert";
 import { LeetCodeLink } from "@/components/mdx/leetcode-link";
 import { AutoLinkText } from "@/components/mdx/auto-link-text";
