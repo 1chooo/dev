@@ -117,6 +117,7 @@ function FadeUp(props: {
   children: React.ReactNode;
   delay?: number;
   divKey?: any;
+  className?: string;
 }) {
   return (
     <motion.div
@@ -132,6 +133,7 @@ function FadeUp(props: {
         delay: props.delay || 0.5,
       }}
       key={props.divKey || undefined}
+      className={props.className || ""}
     >
       {props.children}
     </motion.div>
