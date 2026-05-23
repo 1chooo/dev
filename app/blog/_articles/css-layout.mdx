@@ -1,0 +1,33 @@
+export const metadata = {
+  title: "CSS Layout",
+  date: "2026.03.05",
+  description: "Comparing block, flex, and grid layout models.",
+};
+
+# CSS Layout
+
+CSS layout is the art of deciding how elements occupy space on a page. Three models cover most of what you'll build: **block**, **flex**, and **grid**. Each answers a different question about how siblings relate to one another.
+
+## Block Layout
+
+In block layout, elements stack vertically. Each block-level element takes the full width of its container and pushes the next element below it. This is the default for `div`, `p`, `section`, and most structural HTML.
+
+## Flex Layout
+
+Flexbox distributes space along a single axis. Use it when you want items in a row or column to share space, align, or wrap — navigation bars, toolbars, and card rows are classic flex cases.
+
+## Grid Layout
+
+Grid defines a two-dimensional matrix. Rows and columns are explicit, making it ideal for page layouts, dashboards, and galleries where both axes matter.
+
+<CssLayoutDemo />
+
+## When to Use Which
+
+| Layout | Best for |
+| --- | --- |
+| Block | Document flow, stacked content |
+| Flex | One-dimensional distribution and alignment |
+| Grid | Two-dimensional layouts with explicit tracks |
+
+Most real pages combine all three: a grid for the page shell, flex for component internals, and block flow for prose content inside.

@@ -1,0 +1,34 @@
+export const metadata = {
+  title: "TCP",
+  date: "2026.03.06",
+  description: "How TCP establishes connections and transfers data reliably.",
+};
+
+# TCP
+
+Transmission Control Protocol (TCP) is the reliable, connection-oriented transport layer of the internet. Before any data flows, client and server perform a **three-way handshake** to establish a connection. When done, they exchange a four-way teardown to close it cleanly.
+
+## The Three-Way Handshake
+
+1. **SYN** — Client sends a synchronize packet with a random sequence number.
+2. **SYN-ACK** — Server acknowledges and sends its own sequence number.
+3. **ACK** — Client acknowledges the server's sequence number. Connection established.
+
+Only after this exchange can either side send application data with guaranteed delivery and ordering.
+
+<TcpDemo />
+
+## Why Reliability Costs Latency
+
+TCP guarantees delivery by requiring acknowledgments for every segment. If an ACK doesn't arrive within a timeout, the sender retransmits. This reliability is essential for HTTP, email, and file transfer — but it adds round-trip latency compared to UDP, which sends without confirmation.
+
+## Key Properties
+
+| Property | Description |
+| --- | --- |
+| Connection-oriented | Requires handshake before data |
+| Reliable | Retransmits lost packets |
+| Ordered | Delivers bytes in send order |
+| Flow control | Adjusts rate to receiver capacity |
+
+Understanding TCP helps explain why the first request to a server feels slower (connection setup) and why keep-alive connections improve web performance.

@@ -1,0 +1,74 @@
+export const metadata = {
+  title: "Power Law",
+  date: "2025.08.25",
+  description: "Compound interest, power laws, and exponential growth.",
+};
+
+# Power Law
+
+Most people think about money the way they think about arithmetic — linearly. Save $100 a month for 10 years and you have $12,000. But money does not follow arithmetic. Left to compound, it follows an exponential curve, and exponential curves are almost unimaginably steep once enough time passes.
+
+The underlying principle is a power law: repeated multiplication by a constant factor. The concept appears everywhere in nature — earthquake magnitudes, city populations, the frequency of words in a language. In finance, it takes a form you can personally exploit: compound interest.
+
+## 1% a Day, Every Day
+
+Start with the simplest possible question: what happens if you improve by 1% each day for a full year?
+
+If growth were linear, 1% a day over 365 days would give you a 365% return — you would end up with roughly 4.65 times what you started with. Decent, but nothing special.
+
+Compounding works differently. Each day you multiply, not add:
+
+```
+(1.01)^365 ≈ 37.78
+```
+
+Starting from $1, you end with nearly $38 — almost ten times what the linear version promises. Now run the arithmetic in reverse: what if you slip back by 1% every day?
+
+```
+(0.99)^365 ≈ 0.026
+```
+
+You are left with less than 3 cents on the dollar. The gap between 1% better and 1% worse is not 2 percentage points — it is the difference between 37.78× and 0.026×, a ratio of nearly 1,500 to 1.
+
+Self-improvement and portfolio returns are not literally 1% a day. But the intuition transfers directly: small, consistent gains, reinvested, compound into a curve that logic alone cannot picture.
+
+## The Formula
+
+The engine behind all of this is one equation:
+
+```
+A = P(1 + r/n)^(nt)
+```
+
+| Symbol | Meaning |
+| --- | --- |
+| A | Final amount |
+| P | Principal (money you put in at the start) |
+| r | Annual interest rate (as a decimal, e.g. 0.07 for 7%) |
+| n | Compounding periods per year (12 for monthly) |
+| t | Time in years |
+
+At 7% annual return compounded monthly, $10,000 grows to roughly $20,097 in 10 years — without adding a single cent. The **doubling time** for any rate can be estimated with the Rule of 72: divide 72 by the annual rate to get the approximate years to double. At 7% that is roughly 10.3 years.
+
+## Time, Not Timing
+
+A common mistake is waiting for the "right moment" to invest. But power law curves do not reward timing — they reward duration. Consider two investors:
+
+- **Early Ellie** invests $5,000 a year from age 22 to 32 (10 years, $50,000 total) at 8%, then stops.
+- **Late Louis** invests $5,000 a year from age 32 to 62 (30 years, $150,000 total) at the same rate.
+
+At 62, Ellie has roughly $602,000. Louis, who contributed three times as much for three times as long, has roughly $566,000 — still less. Ellie's decade of head start, compounded over 40 years, overpowers Louis's extra $100,000 and 20 extra years of contributions.
+
+The mathematics are unambiguous: the best time to invest was yesterday. The second-best time is today.
+
+## The Three Levers
+
+Every compounding model has exactly three inputs you can control:
+
+| Lever | Effect |
+| --- | --- |
+| Principal P | Raises the baseline — a one-time lift |
+| Rate r | Reshapes the exponent — high leverage over long periods |
+| Time t | Sits in the exponent — the most powerful lever of all |
+
+Compound interest is often described as the eighth wonder of the world. What it actually is, more precisely, is a power law applied to money — patient, indifferent, and brutally consistent. The curve does not care how smart you are or how hard you work in any given year. It cares only about one thing: how long you let it run.

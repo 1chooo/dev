@@ -1,0 +1,29 @@
+export const metadata = {
+  title: "The Bell Curve",
+  date: "2026.05.04",
+  description: "Exploring the normal distribution interactively.",
+};
+
+# The Bell Curve
+
+The normal distribution — the bell curve — appears everywhere in statistics: test scores, measurement errors, biological traits. Its shape is defined by two parameters: the **mean** (center) and the **standard deviation** (spread).
+
+## The Formula
+
+The probability density function for a normal distribution:
+
+```
+f(x) = (1 / (σ√2π)) · e^(-½((x-μ)/σ)²)
+```
+
+Where μ is the mean and σ is the standard deviation. As σ grows, the curve flattens. As μ shifts, the peak moves left or right without changing shape.
+
+## Interactive Explorer
+
+Adjust the mean and standard deviation below to see how the curve responds. Notice that narrowing σ concentrates probability near the center — this is why small samples from a wide distribution can look surprisingly clustered.
+
+<BellCurveDemo />
+
+## Why It Matters
+
+Many natural processes produce approximately normal distributions through the central limit theorem: the sum of many independent random variables tends toward normality. Understanding the bell curve helps you reason about outliers, confidence intervals, and the difference between typical and exceptional cases.

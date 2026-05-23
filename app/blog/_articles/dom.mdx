@@ -1,0 +1,63 @@
+export const metadata = {
+  title: "DOM",
+  date: "2026.03.06",
+  description: "Understanding the Document Object Model from first principles.",
+};
+
+# DOM
+
+The DOM is one of those things you use every day as a frontend developer without ever quite stopping to think about what it actually is. You call `document.querySelector`, you add event listeners, you update `innerHTML` — and it all just works. But when something breaks, or you need to reason about performance, you discover that the DOM has a lot of rules running underneath everything you do.
+
+## What Is the DOM?
+
+When a browser parses an HTML document it does not store it as a string. Instead it builds a live tree of objects in memory — the Document Object Model. Every element, every text node, every comment becomes a node in that tree, and JavaScript can read and modify that tree at any time.
+
+The critical word is **live**. Change the tree from JavaScript and the browser re-renders the affected parts of the page immediately.
+
+<DomTreeExplorer />
+
+### Node Types
+
+Not everything in the DOM is an element. Every node has a `nodeType` integer:
+
+| `nodeType` | Constant | What it is |
+| --- | --- | --- |
+| `1` | `ELEMENT_NODE` | An HTML element |
+| `3` | `TEXT_NODE` | A text run between tags |
+| `8` | `COMMENT_NODE` | An HTML comment |
+| `9` | `DOCUMENT_NODE` | The root `document` object |
+
+```js
+document.nodeType          // 9 — the document itself
+document.body.nodeType     // 1 — an element
+```
+
+`children` gives you only element nodes (nodeType 1). `childNodes` gives you everything — elements, text, comments. Most of the time `children` is what you want.
+
+## Selecting Elements
+
+```js
+const el = document.querySelector('.card')
+const all = document.querySelectorAll('article h2')
+```
+
+Both accept any valid CSS selector. `querySelectorAll` returns a static NodeList — a snapshot taken at call time.
+
+## Event Propagation
+
+When you click a button inside a div, the browser sends the event on a journey through the entire tree. Understanding this journey explains a huge class of bugs and makes event delegation possible.
+
+<EventPropagationDemo />
+
+Because events bubble, you can attach one listener to a parent and check `event.target` to know which child was acted on — event delegation.
+
+## A Mental Model for the DOM
+
+| Concept | Key fact |
+| --- | --- |
+| Node tree | `document` is the root; everything is a node with `nodeType` |
+| Querying | `querySelector` / `querySelectorAll` accept any CSS selector |
+| Events | Default phase is bubbling (target → ancestors) |
+| Delegation | One parent listener beats many child listeners |
+
+When the browser behaves unexpectedly, the first question is usually: which node owns this behaviour, and what does the DOM's model say should happen here?

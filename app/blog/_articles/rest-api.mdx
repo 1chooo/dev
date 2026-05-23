@@ -1,0 +1,33 @@
+export const metadata = {
+  title: "REST API",
+  date: "2026.03.08",
+  description: "HTTP methods and what each one means for your API design.",
+};
+
+# REST API
+
+REST (Representational State Transfer) maps CRUD operations onto HTTP methods. Each method has well-defined semantics that clients and servers can rely on — using the right method makes your API predictable and cache-friendly.
+
+## HTTP Methods
+
+| Method | Purpose | Idempotent | Safe |
+| --- | --- | --- | --- |
+| GET | Read a resource | Yes | Yes |
+| POST | Create a resource | No | No |
+| PUT | Replace a resource | Yes | No |
+| PATCH | Partially update | No | No |
+| DELETE | Remove a resource | Yes | No |
+
+**Idempotent** means calling the method multiple times has the same effect as calling it once. **Safe** means the method should not modify server state.
+
+## Try It
+
+Select a method below to see a sample request and response:
+
+<RestApiDemo />
+
+## Design Principles
+
+Good REST APIs use nouns for resource paths (`/posts/1`) and verbs via HTTP methods, not in the URL (`/getPost/1`). Status codes communicate outcome: `200` for success, `201` for created, `204` for deleted with no body, `404` for not found.
+
+Keep responses consistent in shape, version your API when breaking changes are unavoidable, and document the contract so clients can integrate without guessing.
